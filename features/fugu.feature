@@ -12,3 +12,8 @@ Feature: Fugu rules
     Given the string "web000{1,2}"
     When I expand it
     Then I should get back "web0001,web0002"
+
+  Scenario: Range expanstion
+    Given the string "web000{1-3}"
+    When I expand it
+    Then I should get back "web0001,web0002,web0003"
