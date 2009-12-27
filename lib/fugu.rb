@@ -26,7 +26,13 @@ class Fugu
       break if pieces.all? {|p| p.match(base)}
     end
     diffs = pieces.map {|p| p.scan(/./) - base.scan(/./)}
-    extras = diffs.flatten.to_ranges.to_s.gsub('..', '-')
+    extras = diffs.flatten.to_ranges.map do |r|
+      if r.first == r.last
+        r.first
+      else
+        "#{r.first}-#{r.last}"
+      end
+    end.join(",")
     base + "{#{extras}}"
   end
   
