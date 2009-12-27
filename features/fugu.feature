@@ -32,3 +32,8 @@ Feature: Fugu rules
     Given the string "web0001|api01"
     When I expand it
     Then I should get back "web0001,api01"
+
+  Scenario: Complex two range expansion
+    Given the string "web000{1-3}|api0{1-2}"
+    When I expand it
+    Then I should get back "web0001,web0002,web0003,api01,api02"
