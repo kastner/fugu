@@ -25,7 +25,7 @@ class Fugu
       base = first[0, first.size-len]
       break if pieces.all? {|p| p.match(base)}
     end
-    diffs = pieces.map {|p| p.scan(/./) - base.scan(/./)}
+    diffs = pieces.map {|p| (p.scan(/./) - base.scan(/./)).join}
     extras = diffs.flatten.to_ranges.map do |r|
       if r.first == r.last
         r.first
