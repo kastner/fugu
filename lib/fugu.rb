@@ -2,17 +2,18 @@ class Fugu
   attr_accessor :text
   
   def expand
-    tmp_a = []
-    @text.split('|').each do |range|
+    @text.split('|').collect do |range|
       if range.match(/\{/)
         before, expand_string, after = range.scan(/(.*)(\{.*\})(.*)/)[0]
         expanded_string = expand_expression(expand_string)
-        tmp_a << expanded_string.map { |piece| before + piece + after }
-      else
-        tmp_a << range
+        range = expanded_string.map { |piece| before + piece + after }
       end
-    end
-    @text = tmp_a.flatten.join(',')
+      range
+    end.flatten.join(",")
+  end
+  
+  def expand!
+    @text = expand
   end
   
   def expand_expression(string)

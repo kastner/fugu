@@ -7,11 +7,13 @@ Feature: Fugu rules
     Given the string "web0001"
     When I expand it
     Then I should get back "web0001"
+    And @text should be "web0001"
 
   Scenario: Unexpandable Fugu expression comes back as it went in
     Given the string "web{0001}"
     When I expand it
     Then I should get back "web0001"
+    And @text should be "web{0001}"
   
   Scenario: Simple expansion
     Given the string "web000{1,2}"
@@ -37,3 +39,8 @@ Feature: Fugu rules
     Given the string "web000{1-3}|api0{1-2}"
     When I expand it
     Then I should get back "web0001,web0002,web0003,api01,api02"
+
+  Scenario: Doing a permanent expansion
+    Given the string "web000{1-3}"
+    When I really expand it
+    Then @text should be "web0001,web0002,web0003"
