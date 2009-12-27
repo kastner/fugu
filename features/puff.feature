@@ -1,4 +1,4 @@
-Feature: Fugu rules
+Feature: Puffing up
   In order to puff some text
   A user passes input to fugu
   And gets something useful out
@@ -24,6 +24,11 @@ Feature: Fugu rules
     Given the string "web000{1-3}"
     When I puff it
     Then I should get back "web0001,web0002,web0003"
+
+  Scenario: Simple Range expanstion
+    Given the string "web{1-2}"
+    When I puff it
+    Then I should get back "web1,web2"
 
   Scenario: Mix of simple and complex ranges
     Given the string "web000{1,2-4,6}"

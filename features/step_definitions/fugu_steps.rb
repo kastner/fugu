@@ -4,11 +4,15 @@ Given /^the string "([^\"]*)"$/ do |arg1|
 end
 
 When /^I puff it$/ do
-  #@f.puff
+  @message = "puff"
+end
+
+When /^I shrink it$/ do
+  @message = "shrink"
 end
 
 Then /^I should get back "([^\"]*)"$/ do |arg1|
-  assert_equal arg1, @f.puff
+  assert_equal arg1, @f.send(@message)
 end
 
 When /^I really puff it$/ do

@@ -1,3 +1,5 @@
+require 'array'
+
 class Fugu
   attr_accessor :text
   
@@ -14,6 +16,18 @@ class Fugu
   
   def puff!
     @text = puff
+  end
+  
+  def shrink
+    pieces = @text.split(",")
+    first, base = pieces.first, pieces.first
+    first.size.times do |len|
+      base = first[0, first.size-len]
+      break if pieces.all? {|p| p.match(base)}
+    end
+    diffs = pieces.map {|p| p.scan(/./) - base.scan(/./)}
+    extras = diffs.flatten.to_ranges.to_s.gsub('..', '-')
+    base + "{#{extras}}"
   end
   
   def puff_expression(string)
