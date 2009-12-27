@@ -3,16 +3,16 @@ Given /^the string "([^\"]*)"$/ do |arg1|
   @f.text = arg1
 end
 
-When /^I expand it$/ do
-  #@f.expand
+When /^I puff it$/ do
+  #@f.puff
 end
 
 Then /^I should get back "([^\"]*)"$/ do |arg1|
-  assert_equal arg1, @f.expand
+  assert_equal arg1, @f.puff
 end
 
-When /^I really expand it$/ do
-  @f.expand!
+When /^I really puff it$/ do
+  @f.puff!
 end
 
 Then /^@text should be "([^\"]*)"$/ do |arg1|
