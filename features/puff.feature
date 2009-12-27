@@ -49,3 +49,8 @@ Feature: Puffing up
     Given the string "web000{1-3}"
     When I really puff it
     Then @text should be "web0001,web0002,web0003"
+
+  Scenario: Expansion with zeros
+    Given the string "web{09-12}"
+    When I puff it
+    Then I should get back "web09,web10,web11,web12"
