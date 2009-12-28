@@ -2,7 +2,13 @@ require 'array'
 
 class Fugu
   attr_accessor :text
-  
+
+  def self.puff(string)
+    f = self.new
+    f.text = string
+    f.puff
+  end
+ 
   def puff
     @text.split('|').collect do |range|
       if range.match(/\{/)
@@ -11,7 +17,7 @@ class Fugu
         range = expanded_string.map { |piece| before + piece + after }
       end
       range
-    end.flatten.join(",")
+    end.flatten
   end
   
   def puff!
@@ -20,7 +26,7 @@ class Fugu
   
   def puff_expression(string)
     string.split(",").collect do |v|
-      (v[/-/]) ? Range.new(*v.split('-')).to_a : v
+      (v[/-/]) ? Range.new(*pad_expression(v).split('-')).to_a : v
     end.flatten
   end
   
@@ -47,6 +53,11 @@ class Fugu
         "#{r.first}-#{r.last}"
       end
     end.join(",")
+  end
+  
+  def pad_expression(string)
+    fat = string.split('-')
+    "%0#{fat.last.length}d-#{fat.last}" % fat.first.to_i
   end
 end
 

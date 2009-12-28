@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby -wKU
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "lib")
+
+require 'rubygems'
+require 'fugu'
+
+puts Fugu.puff(ARGV[0]).join("\n")

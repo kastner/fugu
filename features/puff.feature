@@ -54,3 +54,12 @@ Feature: Puffing up
     Given the string "web{09-12}"
     When I puff it
     Then I should get back "web09,web10,web11,web12"
+
+  Scenario: Class method puff
+    When I call puff on Fugu with "web000{1-3}"
+    Then I should have "web0001,web0002,web0003"
+    
+  Scenario: Puffing unpadded string always returns correct pad amount
+    Given the string "web00{9-10}"
+    When I puff it
+    Then I should get back "web0009,web0010"
