@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class FuguTest < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  def setup
+    @fugu = Fugu.new
+  end
+  
+  should "puff a string like {1-3}" do
+    assert_equal %w[1 2 3], @fugu.puff_expression("{1-3}")
   end
 end
