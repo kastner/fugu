@@ -17,9 +17,24 @@ class Fugu
   def puff!
     @text = puff
   end
+
+  def puff_expression(string)
+    string.gsub(/[\{\}]/, '').split(",").inject([]) do |a,v|
+      v = Range.new(*v.split('-')).to_a if v[/-/]
+      a << v
+    end.flatten
+  end
   
   def shrink
-    pieces = @text.split(",")
+    @text = shrink_expression(@text)
+  end
+
+  def shrink!
+    @text = shrink
+  end
+
+  def shrink_expression(string)
+    pieces = string.split(",")
     first, base = pieces.first, pieces.first
     first.size.times do |len|
       base = first[0, first.size-len]
@@ -34,13 +49,6 @@ class Fugu
       end
     end.join(",")
     base + "{#{extras}}"
-  end
-  
-  def puff_expression(string)
-    string.gsub(/[\{\}]/, '').split(",").inject([]) do |a,v|
-      v = Range.new(*v.split('-')).to_a if v[/-/]
-      a << v
-    end.flatten
-  end
+  end  
 end
 

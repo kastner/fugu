@@ -8,4 +8,8 @@ class FuguTest < Test::Unit::TestCase
   should "puff a string like {1-3}" do
     assert_equal %w[1 2 3], @fugu.puff_expression("{1-3}")
   end
+
+  should "shrink a string like 1,2,3" do
+    assert_equal "{1-3}", @fugu.shrink("1,2,3")
+  end
 end

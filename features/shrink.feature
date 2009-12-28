@@ -28,7 +28,7 @@ Feature: Shrinking down
     When I shrink it
     Then I should get back "web{01-02,12-15}"
 
-  # Scenario: Can't shrink a shrunk
-  #   Given the string "web1,web{2-3}"
-  #   When I shrink it
-  #   Then I should throw an error
+  Scenario: Can't shrink a shrunk
+    Given the string "web1,web{2-3}"
+    When I shrink it
+    Then I should throw an error
