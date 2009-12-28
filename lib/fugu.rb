@@ -19,9 +19,8 @@ class Fugu
   end
   
   def puff_expression(string)
-    string.split(",").inject([]) do |a,v|
-      v = Range.new(*v.split('-')).to_a if v[/-/]
-      a << v
+    string.split(",").collect do |v|
+      (v[/-/]) ? Range.new(*v.split('-')).to_a : v
     end.flatten
   end
   
