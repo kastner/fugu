@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "fugu"
-    gem.summary = %Q{Puff or shrink strings}
-    gem.description = %Q{hahaha hey description!}
+    gem.summary = %Q{Magically puff or shrink strings}
+    gem.description = %Q{Puff: host0{9-10} to host09 host10}
     gem.email = "kastner@gmail.com"
     gem.homepage = "http://github.com/kastner/fugu"
     gem.authors = ["Erik Kastner"]
