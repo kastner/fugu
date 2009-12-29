@@ -1,6 +1,6 @@
 = fugu
 
-Description goes here.
+A magical string puffer and shrinker.
 
 == Note on Patches/Pull Requests
  
@@ -15,4 +15,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2009 Erik Kastner. See LICENSE for details.
+Copyright (c) 2009 Erik Kastner and Ian Meyer. See LICENSE for details.
