@@ -63,3 +63,8 @@ Feature: Puffing up
     Given the string "web00{9-10}" and delimiter ","
     When I puff it
     Then I should get back "web0009,web0010"
+
+  #Scenario: Removing entry from puffed string
+  #  Given the string "web00{9-11} - web0010" and delimiter ","
+  #  When I puff it
+  #  Then I should get back "web0009,web0011"
