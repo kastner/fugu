@@ -9,12 +9,11 @@ OptionParser.new() do |opts|
   opts.banner = "Usage: #{$0} RANGE"
 
   options[:action] = "puff"
-  options[:delimiter] = "\n"
-  
   opts.on('-s', '--shrink', 'Shrink expression') do
     options[:action] = "shrink"
   end
   
+  options[:delimiter] = "\n"
   opts.on('-d', '--delimiter DELIMITER', String, 'Delimiter') do |delimiter|
     options[:delimiter] = delimiter
   end
