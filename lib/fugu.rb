@@ -30,6 +30,12 @@ class Fugu
     end.flatten
   end
   
+  def self.shrink(string)
+    f = self.new
+    f.text = string
+    f.shrink
+  end
+  
   def shrink
     pieces = @text.split(",")
     first, base = pieces.first, pieces.first

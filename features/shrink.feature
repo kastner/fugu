@@ -28,7 +28,6 @@ Feature: Shrinking down
     When I shrink it
     Then I should get the string "web{01-02,12-15}"
 
-  #Scenario: Can't shrink a shrunk
-  #  Given the string "web1,web{2-3}"
-  #  When I shrink it
-  #  Then I should throw an error
+  Scenario: Class method of shrink
+    When I call shrink on Fugu with "web001,web002,web003"
+    Then I should have shrunk "web00{1-3}"

@@ -34,3 +34,11 @@ end
 Then /^I should have "([^\"]*)"$/ do |arg1|
   assert_equal arg1, Fugu.puff(@string).join(',')
 end
+
+When /^I call shrink on Fugu with "([^\"]*)"$/ do |arg1|
+  @string = arg1
+end
+
+Then /^I should have shrunk "([^\"]*)"$/ do |arg1|
+  assert_equal arg1, Fugu.shrink(@string)
+end

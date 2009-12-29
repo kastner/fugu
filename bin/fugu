@@ -2,7 +2,24 @@
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), "..", "lib")
 
-require 'rubygems'
-require 'fugu'
+%w{rubygems fugu optparse}.each { |m| require m }
 
-puts Fugu.puff(ARGV[0]).join("\n")
+options = {}
+OptionParser.new() do |opts|
+  opts.banner = "Usage: #{$0} RANGE"
+
+  options[:action] = "puff"
+  
+  opts.on('-s', '--shrink', 'Shrink expression') do
+    options[:action] = "shrink"
+  end
+  
+  opts.parse!
+end
+
+res = case options[:action]
+when "puff"   then Fugu.puff(ARGV[0]).join("\n")
+when "shrink" then Fugu.shrink(ARGV[0])
+end
+
+puts res
