@@ -36,10 +36,11 @@ Then /^I should have "([^\"]*)"$/ do |arg1|
   assert_equal arg1, Fugu.puff(@string).join(',')
 end
 
-When /^I call shrink on Fugu with "([^\"]*)"$/ do |arg1|
+When /^I call shrink on Fugu with "([^\"]*)" and delimiter "([^\"]*)"$/ do |arg1, arg2|
   @string = arg1
+  @delimiter = arg2
 end
 
 Then /^I should have shrunk "([^\"]*)"$/ do |arg1|
-  assert_equal arg1, Fugu.shrink(@string)
+  assert_equal arg1, Fugu.shrink(@string, @delimiter)
 end
