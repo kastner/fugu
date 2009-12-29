@@ -1,7 +1,7 @@
 require 'array'
 
 class Fugu
-  attr_accessor :text
+  attr_accessor :text, :delimiter
 
   def self.puff(string)
     f = self.new
@@ -30,14 +30,15 @@ class Fugu
     end.flatten
   end
   
-  def self.shrink(string)
+  def self.shrink(string, delimiter)
     f = self.new
     f.text = string
+    f.delimiter = delimiter
     f.shrink
   end
   
   def shrink
-    pieces = @text.split(",")
+    pieces = @text.split("#{@delimiter}")
     first, base = pieces.first, pieces.first
     first.size.times do |len|
       base = first[0, first.size-len]

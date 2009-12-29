@@ -1,6 +1,7 @@
-Given /^the string "([^\"]*)"$/ do |arg1|
+Given /^the string "([^\"]*)" and delimiter "([^\"]*)"$/ do |arg1, arg2|
   @f = Fugu.new
   @f.text = arg1
+  @f.delimiter = arg2
 end
 
 When /^I puff it$/ do

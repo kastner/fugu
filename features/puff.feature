@@ -4,54 +4,54 @@ Feature: Puffing up
   And gets something useful out
   
   Scenario: Unexpandable text should come back as it went in
-    Given the string "web0001"
+    Given the string "web0001" and delimiter ","
     When I puff it
     Then I should get back "web0001"
     And @text should be "web0001"
 
   Scenario: Unexpandable Fugu expression comes back as it went in
-    Given the string "web{0001}"
+    Given the string "web{0001}" and delimiter ","
     When I puff it
     Then I should get back "web0001"
     And @text should be "web{0001}"
   
   Scenario: Simple expansion
-    Given the string "web000{1,2}"
+    Given the string "web000{1,2}" and delimiter ","
     When I puff it
     Then I should get back "web0001,web0002"
 
   Scenario: Range expanstion
-    Given the string "web000{1-3}"
+    Given the string "web000{1-3}" and delimiter ","
     When I puff it
     Then I should get back "web0001,web0002,web0003"
 
   Scenario: Simple Range expanstion
-    Given the string "web{1-2}"
+    Given the string "web{1-2}" and delimiter ","
     When I puff it
     Then I should get back "web1,web2"
 
   Scenario: Mix of simple and complex ranges
-    Given the string "web000{1,2-4,6}"
+    Given the string "web000{1,2-4,6}" and delimiter ","
     When I puff it
     Then I should get back "web0001,web0002,web0003,web0004,web0006"
 
   Scenario: Simple two range expansion
-    Given the string "web0001|api01"
+    Given the string "web0001|api01" and delimiter ","
     When I puff it
     Then I should get back "web0001,api01"
 
   Scenario: Complex two range expansion
-    Given the string "web000{1-3}|api0{1-2}"
+    Given the string "web000{1-3}|api0{1-2}" and delimiter ","
     When I puff it
     Then I should get back "web0001,web0002,web0003,api01,api02"
 
   Scenario: Doing a permanent expansion
-    Given the string "web000{1-3}"
+    Given the string "web000{1-3}" and delimiter ","
     When I really puff it
     Then @text should be "web0001,web0002,web0003"
 
   Scenario: Expansion with zeros
-    Given the string "web{09-12}"
+    Given the string "web{09-12}" and delimiter ","
     When I puff it
     Then I should get back "web09,web10,web11,web12"
 
@@ -60,6 +60,6 @@ Feature: Puffing up
     Then I should have "web0001,web0002,web0003"
     
   Scenario: Puffing unpadded string always returns correct pad amount
-    Given the string "web00{9-10}"
+    Given the string "web00{9-10}" and delimiter ","
     When I puff it
     Then I should get back "web0009,web0010"

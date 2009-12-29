@@ -9,17 +9,22 @@ OptionParser.new() do |opts|
   opts.banner = "Usage: #{$0} RANGE"
 
   options[:action] = "puff"
+  options[:delimiter] = "\n"
   
   opts.on('-s', '--shrink', 'Shrink expression') do
     options[:action] = "shrink"
   end
   
+  opts.on('-d', '--delimiter DELIMITER', String, 'Delimiter') do |delimiter|
+    options[:delimiter] = delimiter
+  end
+
   opts.parse!
 end
 
-res = case options[:action]
-when "puff"   then Fugu.puff(ARGV[0]).join("\n")
-when "shrink" then Fugu.shrink(ARGV[0])
-end
+string = ARGV[0] || ARGF.read
 
-puts res
+puts case options[:action]
+  when "puff"   then Fugu.puff(string).join(options[:delimiter])
+  when "shrink" then Fugu.shrink(string, options[:delimiter])
+end
